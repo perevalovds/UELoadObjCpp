@@ -48,7 +48,7 @@ void ASurfActor::Tick(float DeltaTime)
 }
 
 //Set material
-void ASurfActor::PostEditChangeProperty(struct FPropertyChangedEvent& PropertyChangedEvent)
+/*void ASurfActor::PostEditChangeProperty(struct FPropertyChangedEvent& PropertyChangedEvent)
 {
 	Super::PostEditChangeProperty(PropertyChangedEvent);
 
@@ -57,7 +57,7 @@ void ASurfActor::PostEditChangeProperty(struct FPropertyChangedEvent& PropertyCh
 
 	if (l_propName.ToString() == "MaterialSlot") UpdateMaterial();
 
-}
+}*/
 
 void ASurfActor::LoadMesh()
 {
@@ -92,7 +92,7 @@ void ASurfActor::LoadMesh()
 	for (int i = 0; i < nV; i++) {
 		int k = i * 3;
 		positions[i] = FVector3f(XYZ[k], -XYZ[k+1], XYZ[k+2]);	// NOTE: reverse Y
-    }
+	}
 
 	mesh_desc.ReserveNewVertexInstances(nV);
 	std::vector<FVertexID> vinstid(nV);
@@ -118,13 +118,13 @@ void ASurfActor::LoadMesh()
 
 	// Build static mesh
 	mesh->BuildFromMeshDescriptions({ &mesh_desc }, mdParams);
-	if (MaterialSlot)
-	{
-		mesh->SetMaterial(0, MaterialSlot);
-	}
 
 	ObjectMesh->SetStaticMesh(mesh);
-    Mesh = ObjectMesh->GetStaticMesh();
+	if (MaterialSlot)
+	{
+		ObjectMesh->SetMaterial(0, MaterialSlot);
+	}
+	Mesh = ObjectMesh->GetStaticMesh();
 }
 
 
@@ -186,13 +186,12 @@ void ASurfActor::MakeTestTriangle()
 
 	// Build static mesh
 	Mesh->BuildFromMeshDescriptions({ &mesh_desc }, mdParams);
-	if (MaterialSlot)
-	{
-		Mesh->SetMaterial(0, MaterialSlot);
-	}
 
 	ObjectMesh->SetStaticMesh(Mesh);
-
+	if (MaterialSlot)
+	{
+		ObjectMesh->SetMaterial(0, MaterialSlot);
+	}
 	//UpdateMaterial();
 }
 

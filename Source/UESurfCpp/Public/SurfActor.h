@@ -21,7 +21,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	//Set material
-	virtual void PostEditChangeProperty(struct FPropertyChangedEvent& PropertyChangedEvent) override;
+	//virtual void PostEditChangeProperty(struct FPropertyChangedEvent& PropertyChangedEvent) override;
 
 	void UpdateMaterial();
 public:	
