@@ -124,6 +124,7 @@ void ASurfActor::LoadMesh()
 	}
 
 	ObjectMesh->SetStaticMesh(mesh);
+    Mesh = ObjectMesh->GetStaticMesh();
 }
 
 
