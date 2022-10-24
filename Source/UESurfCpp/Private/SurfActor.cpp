@@ -91,8 +91,8 @@ void ASurfActor::LoadMesh()
 	positions = attributes.GetVertexPositions();
 	for (int i = 0; i < nV; i++) {
 		int k = i * 3;
-		positions[i] = FVector3f(XYZ[k], XYZ[k+1], XYZ[k+2]);
-	}
+		positions[i] = FVector3f(XYZ[k], -XYZ[k+1], XYZ[k+2]);	// NOTE: reverse Y
+    }
 
 	mesh_desc.ReserveNewVertexInstances(nV);
 	std::vector<FVertexID> vinstid(nV);
